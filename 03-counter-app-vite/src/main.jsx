@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { FirstApp } from './FirstApp';
 
-function App() {
-    //document.createElement...
-    return (<h1> Hola Mundo</h1>);
-}
+import './styles.css'
+
 
 ReactDOM.createRoot( document.getElementById('root') ).render(
     <React.StrictMode>
-      <App />  
+      <FirstApp title= "Hola, soy Goku" subTitle={123}/>  
     </React.StrictMode>
 );
