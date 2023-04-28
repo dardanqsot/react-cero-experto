@@ -9,8 +9,9 @@ export const FirstApp = ( {title, subTitle, name} ) => {
   return (
     //Esto es el uso de un fragmento: <>
     <> 
-    <h1> { title} </h1>
+    <h1 data-testid="test-title"> { title } </h1>
       {/* <code>{ JSON.stringify(newMessage)}</code>  */}
+      <p>{ subTitle }</p>
       <p>{ subTitle }</p>
       <p>{ name }</p>
     </>
@@ -23,7 +24,7 @@ FirstApp.propTypes = {
 }
 
 FirstApp.defaultProps = {
-  name: 'Darwin Quispe',
-  subTitle: 'No hay SubTítulo',
-  title: 'No hay Título'
+  name: 'Darwin',
+  subTitle: 'No hay subtítulo',
+  // title: 'No hay título',
 }
