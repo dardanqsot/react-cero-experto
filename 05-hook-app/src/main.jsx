@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
+import { BrowserRouter } from 'react-router-dom';
 
 //import { HooksApp } from './HooksApp';
 //import { CounterApp } from './01-useState/CounterApp';
@@ -14,11 +14,15 @@ import './index.css'
 //import { MemoHook } from './06-memos/MemoHook';
 //import './08-useReducer/intro-reducer';
 //import { CallbackHook } from './06-memos/CallbackHook';
+//import { TodoApp } from './08-useReducer/TodoApp';
+import { MainApp } from './09-useContext/MainApp'
 
-import { TodoApp } from './08-useReducer/TodoApp';
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <TodoApp />
-  </React.StrictMode>,
+  <BrowserRouter>
+    {/* <React.StrictMode> */}
+      <MainApp />
+    {/* </React.StrictMode> */}
+  </BrowserRouter>
 )
