@@ -63,7 +63,7 @@ export const startUploadingFiles = ( files = [] ) => {
         dispatch( setSaving() )
         //await fileUpload( files[0]);
         const fileUploadPromises = [];
-        for ( const file of file ) {
+        for ( const file of files ) {
             fileUploadPromises.push ( fileUpload(file));
         }
 
