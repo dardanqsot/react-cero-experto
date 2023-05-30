@@ -1,4 +1,13 @@
+import { v2 as cloudinary } from 'cloudinary';
 import { fileUpload } from '../../src/helpers/fileUpload';
+
+cloudinary.config({
+    cloud_name: 'df5slylnx',
+    api_key: '218176311596476',
+    api_secret: 'ewGK_sFF3VYNHa4RNhBPDRNSu34',
+    secure: true
+});
+
 
 describe('Pruebas en fileUpload', () => {
 
@@ -12,7 +21,24 @@ describe('Pruebas en fileUpload', () => {
         const url = await fileUpload( file );
         expect( typeof url ).toBe('string');
 
+        // console.log(url);
+        const segments = url.split('/');
+        const imageId = segments[ segments.length - 1 ].replace('.jpg','');
+        
+        const cloudResp = await cloudinary.api.delete_resources([ 'journal/' + imageId ], {
+           resource_type: 'image'
+        });
+        // console.log({ cloudResp })
     });
+
+    test('debe de retornar null', async() => {
+
+        const file = new File([], 'foto.jpg');
+        const url = await fileUpload( file );
+        expect( url ).toBe( null );
+        
+    });
+
 
     
 });
