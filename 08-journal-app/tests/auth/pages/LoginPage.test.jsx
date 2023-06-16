@@ -75,5 +75,37 @@ describe('Pruebas en <LoginPage />', () => {
 
     });
 
+
+    test('submit debe de llamar startLoginWithEmailPassword', () => {
+
+        const email    = 'darwin@google.com';
+        const password = '123456';
+
+        render(
+            <Provider store={ store }>
+                <MemoryRouter>
+                    <LoginPage />
+                </MemoryRouter>
+            </Provider>
+        );
+
+        const emailField = screen.getByRole('textbox', { name: 'Correo' });
+        fireEvent.change( emailField, { target: { name: 'email', value: email } });
+        
+        const passwordField = screen.getByTestId('password');
+        fireEvent.change( passwordField, { target: { name: 'password', value: password } });
+        
+        const loginForm = screen.getByLabelText('submit-form');
+        fireEvent.submit( loginForm );
+
+        
+        expect( mockStartLoginWithEmailPassword ).toHaveBeenCalledWith({
+            email: email,
+            password: password
+        })
+
+
+    });
+
     
 });
