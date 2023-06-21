@@ -1,14 +1,12 @@
 
-let firstname = 'Pepe';
-firstname = 'Darwin';
 
-const lastname = 'Quispe';
-// lastname = 'Roe';
-const condicion = true;
+const sayHello = (name = 'Pepe', age = 0) => `Hola mundo function! ${name} edad ${age}`;
+const add = (a = 0, b = 0) => a + b;
 
-if (condicion) {
-    const lastname = 'Doe';
-    console.log(lastname)
-}
+const result = sayHello('Darwin', 10);
 
-console.log(`Hola mundo!!!! ${firstname} - ${lastname}`);
+console.log(result);
+console.log(add(10, 5));
+
+
+
