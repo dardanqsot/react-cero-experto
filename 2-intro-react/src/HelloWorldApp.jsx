@@ -1,13 +1,12 @@
-
-export const HelloWorldApp = ({ user, id, title, book}) => {
+export const HelloWorldApp = ({ user, id, title}) => {
     
     console.log(title)
     // const name = 'Pepe';
 
     return (
         <>
-            <div>Hola Mundo</div>
-            <h1>Que tal</h1>
+            <h1>Hola Mundo</h1>
+            <div>Que tal! {user} con el id { id } </div>
         </>
     );
 }
