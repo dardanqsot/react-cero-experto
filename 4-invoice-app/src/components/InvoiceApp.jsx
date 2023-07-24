@@ -9,6 +9,16 @@ export const InvoiceApp = () => {
                 <li> Id: {invoice.id} </li>
                 <li> Name: {invoice.name} </li>
             </ul>
+
+            <h3>Datos del cliente</h3>
+            <ul>
+                <li> { invoice.client.name } </li>
+                <li> { invoice.client.lastName } </li>
+                <li> { invoice.client.address.country } </li>
+                <li> { invoice.client.address.city } </li>
+                <li> { invoice.client.address.street } </li>
+                
+            </ul>
         </>
     )
 }
