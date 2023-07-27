@@ -19,6 +19,20 @@ export const InvoiceApp = () => {
                 <li> { invoice.client.address.street } </li>
                 
             </ul>
+
+            <h3>Productos de la factura</h3>
+            <ul>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                    </tr>
+                    </thead>
+                </table>
+                
+            </ul>
         </>
     )
 }
