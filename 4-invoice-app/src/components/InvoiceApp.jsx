@@ -1,40 +1,41 @@
 import { getInvoice } from "../services/getInvoice"
+import { ClientView } from "./ClientView";
+import { CompanyView } from "./CompanyView";
+import { InvoiceView } from "./InvoiceView";
+import { ListItemsView } from "./ListItemsView";
+
 export const InvoiceApp = () => {
 
-    const invoice = getInvoice();
+    const { id, name, client, company, items } = getInvoice();
+
     return (
         <>
-            <div className="card-header">
-                Ejemplo Factura
+            <div className="container">
+
+                <div className="card my-3">
+
+                    <div className="card-header">
+                        Ejemplo Factura
+                    </div>
+                    <div className="card-body">
+                        <InvoiceView id={ id } name={ name } />
+
+                        <div className="row my-3">
+
+                            <div className="col">
+                                <ClientView title="Datos del cliente" client={client} />
+                            </div>
+
+                            <div className="col">
+                                <CompanyView title="Datos de la empresa" company={company} />
+                            </div>
+
+                        </div>
+
+                        <ListItemsView title="Productos de la factura" items={items} />
+                    </div>
+                </div>
             </div>
-            <ul>
-                <li> Id: {invoice.id} </li>
-                <li> Name: {invoice.name} </li>
-            </ul>
-
-            <h3>Datos del cliente</h3>
-            <ul>
-                <li> {invoice.client.name} </li>
-                <li> {invoice.client.lastName} </li>
-                <li> {invoice.client.address.country} </li>
-                <li> {invoice.client.address.city} </li>
-                <li> {invoice.client.address.street} </li>
-
-            </ul>
-
-            <h3>Productos de la factura</h3>
-            <ul>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                        </tr>
-                    </thead>
-                </table>
-
-            </ul>
         </>
     )
 }
