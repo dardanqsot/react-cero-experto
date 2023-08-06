@@ -18,6 +18,38 @@ export const InvoiceApp = () => {
 
     const [counter, setcounter] = useState(4)
 
+    const onProductChange = ({ target }) => {
+        setProductValue(target.value);
+    }
+
+    const onPriceChange = ({ target }) => {
+        setPriceValue(target.value);
+    }
+
+    const onQuantityChange = ({ target }) => {
+        setQuantityValue(target.value);
+    }
+
+    const onInvoiceItemsSubmit = (event) => {
+        event.preventDefault();
+
+        if(productValue.trim().length <=1) return;
+        if(priceValue.trim().length <=1) return;
+        if(isNaN(priceValue.trim())) return;
+        if(quantityValue.trim().length <=1) return;
+        if(isNaN(quantityValue.trim())) return;
+
+        setItems([...items, {
+            id : counter, 
+            product: productValue.trim(), 
+            price: +priceValue.trim(), 
+            quantity: parseInt(quantityValue.trim(), 10)}]);
+
+            setProductValue('');
+            setPriceValue('');
+            setQuantityValue('');
+            setcounter( counter + 1);
+    }
     return (
         <>
             <div className="container">
@@ -44,50 +76,28 @@ export const InvoiceApp = () => {
 
                         <ListItemsView title="Productos de la factura" items={items} />
                         <TotalView total = { total } />
-                        <form className="w-50" onSubmit={ event => {
-                            event.preventDefault();
-
-                            if(productValue.trim().length <=1) return;
-                            if(priceValue.trim().length <=1) return;
-                            if(isNaN(priceValue.trim())) return;
-                            if(quantityValue.trim().length <=1) return;
-                            if(isNaN(quantityValue.trim())) return;
-
-                            setItems([...items, {
-                                id : counter, 
-                                product: productValue.trim(), 
-                                price: +priceValue.trim(), 
-                                quantity: parseInt(quantityValue.trim(), 10)}]);
-
-                                setProductValue('');
-                                setPriceValue('');
-                                setQuantityValue('');
-                                setcounter( counter + 1);
-                        }}>
+                        <form className="w-50" onSubmit={ onInvoiceItemsSubmit }>
                             <input
                                 type="text"
                                 name="product"
                                 value={ productValue }
                                 placeholder="Producto"
-                                className="form-control m-3" onChange={event => {
-                                    setProductValue(event.target.value);
-                                }}/>
+                                className="form-control m-3" 
+                                onChange={ onProductChange }/>
                             <input
                                 type="text"
                                 name="price"
                                 value={ priceValue }
                                 placeholder="Precio"
-                                className="form-control m-3" onChange={event => {
-                                    setPriceValue(event.target.value);
-                                }}/>
+                                className="form-control m-3" 
+                                onChange={ event => onPriceChange(event) }/>
                             <input
                                 type="text"
                                 name="quantity"
                                 value={ quantityValue }
                                 placeholder="Cantidad"
-                                className="form-control m-3" onChange={event => {
-                                    setQuantityValue(event.target.value);
-                                }}/>
+                                className="form-control m-3" 
+                                onChange={ onQuantityChange }/>
                             
                             <button 
                              type="submit" 
