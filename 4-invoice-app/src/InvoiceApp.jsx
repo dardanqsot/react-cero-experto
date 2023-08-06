@@ -49,13 +49,15 @@ export const InvoiceApp = () => {
 
                             if(productValue.trim().length <=1) return;
                             if(priceValue.trim().length <=1) return;
+                            if(isNaN(priceValue.trim())) return;
                             if(quantityValue.trim().length <=1) return;
+                            if(isNaN(quantityValue.trim())) return;
 
                             setItems([...items, {
                                 id : counter, 
-                                product: productValue, 
-                                price: +priceValue, 
-                                quantity: parseInt(quantityValue, 10)}]);
+                                product: productValue.trim(), 
+                                price: +priceValue.trim(), 
+                                quantity: parseInt(quantityValue.trim(), 10)}]);
 
                                 setProductValue('');
                                 setPriceValue('');
