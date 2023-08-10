@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getInvoice } from "./services/getInvoice"
 import { ClientView } from "./components/ClientView";
 import { CompanyView } from "./components/CompanyView";
@@ -8,7 +8,36 @@ import { TotalView } from "./components/TotalView";
 
 export const InvoiceApp = () => {
 
-    const { total, id, name, client, company, items: itemsInitial } = getInvoice();
+    const invoiceInitial = {
+        id: 0,
+        name: '',
+        client: {
+            name: '',
+            lastName: '',
+            address: {
+                country: '',
+                city: '',
+                street: '',
+                number: 0
+            }
+        },
+        company: {
+            name: '',
+            fiscalNumber: 0,
+        },
+        items: []
+    }
+    const [invoice, setInvoice] = useState(invoiceInitial);
+
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        const data = getInvoice();
+        setInvoice(data);
+        setItems(data.items);
+    }, [])
+    
+    const { total, id, name, client, company, items: itemsInitial } = invoice;
 
     const [formItemsState, setFormItemsState] = useState({
         product: '',
@@ -18,7 +47,6 @@ export const InvoiceApp = () => {
 
     const { product, price, quantity } = formItemsState;
  
-    const [items, setItems] = useState(itemsInitial);
 
     const [counter, setCounter] = useState(4);
 
