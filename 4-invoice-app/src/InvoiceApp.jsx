@@ -1,69 +1,78 @@
 import { useEffect, useState } from "react";
-import { getInvoice } from "./services/getInvoice"
+import { getInvoice, calculateTotal } from "./services/getInvoice"
 import { ClientView } from "./components/ClientView";
 import { CompanyView } from "./components/CompanyView";
 import { InvoiceView } from "./components/InvoiceView";
 import { ListItemsView } from "./components/ListItemsView";
 import { TotalView } from "./components/TotalView";
 
+const invoiceInitial = {
+    id: 0,
+    name: '',
+    client: {
+        name: '',
+        lastName: '',
+        address: {
+            country: '',
+            city: '',
+            street: '',
+            number: 0
+        }
+    },
+    company: {
+        name: '',
+        fiscalNumber: 0,
+    },
+    items: []
+};
+
 export const InvoiceApp = () => {
 
-    const invoiceInitial = {
-        id: 0,
-        name: '',
-        client: {
-            name: '',
-            lastName: '',
-            address: {
-                country: '',
-                city: '',
-                street: '',
-                number: 0
-            }
-        },
-        company: {
-            name: '',
-            fiscalNumber: 0,
-        },
-        items: []
-    }
+    const [total, setTotal] = useState(0);
+
+    const [counter, setCounter] = useState(4);
+
     const [invoice, setInvoice] = useState(invoiceInitial);
 
     const [items, setItems] = useState([]);
-        const [formItemsState, setFormItemsState] = useState({
+
+    const [formItemsState, setFormItemsState] = useState({
         product: '',
         price: '',
         quantity: '',
     });
 
-    const [counter, setCounter] = useState(4);
-
-    const { total, id, name, client, company } = invoice;
+    const { id, name, client, company } = invoice;
 
     const { product, price, quantity } = formItemsState;
 
     useEffect(() => {
         const data = getInvoice();
+        console.log(data);
         setInvoice(data);
         setItems(data.items);
-    }, [])
-    
-    useEffect(() => {
-    }, [price])
+    }, []);
 
     useEffect(() => {
-    }, [formItemsState])
+        // console.log('el precio cambio!')
+    }, [price]);
 
     useEffect(() => {
-    }, [counter])
+        // console.log('el formItemsState cambio!')
+    }, [formItemsState]);
 
     useEffect(() => {
-    }, [items])
+        // console.log('el counter cambio!')
+    }, [counter]);
 
+    useEffect(() => {
+        setTotal(calculateTotal(items));
+        // console.log('el items cambio!')
+    }, [items]);
 
     const onInputChange = ({ target: { name, value } }) => {
-        console.log(name);
-        console.log(value);
+        // console.log(name);
+        // console.log(value);
 
         setFormItemsState({
             ...formItemsState,
