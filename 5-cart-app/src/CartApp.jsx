@@ -1,8 +1,13 @@
+import { useState } from "react"
 import { CartView } from "./components/CartView"
 import { CatalogView } from "./components/CatalogView"
 
+const initialCartItems = [
+]
 export const CartApp = () => {
 
+    const [cartItems, setcartItems] = useState(initialCartItems);
+    
     return (
         <>
 
@@ -12,7 +17,7 @@ export const CartApp = () => {
                 <CatalogView />
 
                 <div className="my-4 w-50">
-                    <CartView />
+                    <CartView items = {cartItems}/>
                 </div>
 
             </div>
