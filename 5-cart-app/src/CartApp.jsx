@@ -9,7 +9,14 @@ export const CartApp = () => {
     const [cartItems, setcartItems] = useState(initialCartItems);
 
     const handlerAddProductCart = ( product ) => {
-
+        setcartItems([
+            ...cartItems,
+            {
+                product,
+                quantity: 1,
+                total: product.price * 1
+            }
+        ]);
     }
     
     return (
@@ -18,7 +25,7 @@ export const CartApp = () => {
             <div className="container">
 
                 <h3>Cart App</h3>
-                <CatalogView />
+                <CatalogView handler={handlerAddProductCart}/>
 
                 <div className="my-4 w-50">
                     <CartView items = {cartItems}/>
