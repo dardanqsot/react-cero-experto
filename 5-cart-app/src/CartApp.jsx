@@ -9,14 +9,35 @@ export const CartApp = () => {
     const [cartItems, setcartItems] = useState(initialCartItems);
 
     const handlerAddProductCart = ( product ) => {
-        setcartItems([
-            ...cartItems,
-            {
-                product,
-                quantity: 1,
-                total: product.price * 1
-            }
-        ]);
+
+        const hasItem = cartItems.find( (i) => i.product.id === product.id);
+        if ( hasItem ){
+/*
+            setcartItems([
+                ...cartItems.filter( (i) => i.product.id !== product.id),
+                {
+                    product,
+                    quantity: hasItem.quantity + 1,
+                }
+            ])
+            */
+            setcartItems(
+                cartItems.map( (i) => {
+                    if ( i.product.id === product.id ){
+                        i.quantity = i.quantity + 1;
+                    }
+                    return i;
+                })
+                )
+        } else {
+            setcartItems([
+                ...cartItems,
+                {
+                    product,
+                    quantity: 1
+                }
+            ]);
+        }
     }
     
     return (
