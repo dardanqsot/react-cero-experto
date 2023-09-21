@@ -4,6 +4,7 @@ import { CatalogView } from "./components/CatalogView"
 import { itemsReducer } from "./reducer/itemsReducer";
 import { AddProductCart, DeleteProductCart, UpdateQuantityProductCart } from "./reducer/itemsActions";
 import { useItemsCart } from "./hooks/useItemsCart";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 
 export const CartApp = () => {
@@ -15,13 +16,28 @@ export const CartApp = () => {
             <div className="container my-4">
 
                 <h3>Cart App</h3>
-                <CatalogView handler={handlerAddProductCart}/>
-                { cartItems?.length <= 0 || 
-                    (
-                        <div className="my-4 w-50">
-                            <CartView items = {cartItems} handlerDelete = {handlerDeleteProductCart}/>
-                        </div>
-                    )}
+                <Routes>
+                    <Route 
+                        path="catalog" 
+                        element={ <CatalogView handler={handlerAddProductCart}/> }
+                    />
+                    <Route 
+                        path="cart" 
+                        element={ (
+                            cartItems?.length <= 0 ?
+                             <div className="alert alert-warning">No hay productos en el carrito de compras!</div>
+                             :
+                            (
+                                <div className="my-4 w-50">
+                                    <CartView items = {cartItems} handlerDelete = {handlerDeleteProductCart}/>
+                                </div>
+                            )
+                        )}
+                    />
+
+                    <Route path="/" element= { <Navigate to={'/catalog'} />} />
+                </Routes>
+                
                 
 
             </div>
