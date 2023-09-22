@@ -5,6 +5,7 @@ import { itemsReducer } from "./reducer/itemsReducer";
 import { AddProductCart, DeleteProductCart, UpdateQuantityProductCart } from "./reducer/itemsActions";
 import { useItemsCart } from "./hooks/useItemsCart";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { Navbar } from "./components/Navbar";
 
 
 export const CartApp = () => {
@@ -12,7 +13,7 @@ export const CartApp = () => {
     const { cartItems, handlerAddProductCart, handlerDeleteProductCart } = useItemsCart();
     return (
         <>
-
+            <Navbar />
             <div className="container my-4">
 
                 <h3>Cart App</h3>
