@@ -1,27 +1,21 @@
-import { useEffect, useReducer } from "react"
+import { useEffect, useReducer } from "react";
 import { itemsReducer } from "../reducer/itemsReducer";
 import { AddProductCart, DeleteProductCart, UpdateQuantityProductCart } from "../reducer/itemsActions";
 
-
-
-const initialCartItems = JSON.parse(sessionStorage.getItem('cart')) || [];
+const inititalCartItems = JSON.parse(sessionStorage.getItem('cart')) || [];
 
 export const useItemsCart = () => {
-    
 
-    //const [cartItems, setcartItems] = useState(initialCartItems);
-    const [ cartItems, dispatch] = useReducer(itemsReducer, initialCartItems);
+    const [cartItems, dispatch] = useReducer(itemsReducer, inititalCartItems);
 
     useEffect(() => {
         sessionStorage.setItem('cart', JSON.stringify(cartItems));
-    }, [cartItems])
-    
+    }, [cartItems]);
 
-    const handlerAddProductCart = ( product ) => {
+    const handlerAddProductCart = (product) => {
 
-        const hasItem = cartItems.find( (i) => i.product.id === product.id);
-        if ( hasItem ){
-
+        const hasItem = cartItems.find((i) => i.product.id === product.id);
+        if (hasItem) {
             dispatch(
                 {
                     type: UpdateQuantityProductCart,
@@ -29,22 +23,20 @@ export const useItemsCart = () => {
                 }
             );
         } else {
-            dispatch(
-                {
-                    type: AddProductCart,
-                    payload: product,
-                }
-            );
+            dispatch({
+                type: AddProductCart,
+                payload: product,
+            });
         }
     }
-    
+
     const handlerDeleteProductCart = (id) => {
         dispatch(
             {
                 type: DeleteProductCart,
                 payload: id,
             }
-        );
+        )
     }
 
     return {
