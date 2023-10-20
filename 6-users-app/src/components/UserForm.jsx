@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export const UserForm = ({ handlerAddUser, initialUserForm }) => {
+export const UserForm = ({ handlerAddUser, initialUserForm, userSelected }) => {
 
     const [userForm, setUserForm] = useState(initialUserForm);
 

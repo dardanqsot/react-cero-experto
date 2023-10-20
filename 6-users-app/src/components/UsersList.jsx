@@ -1,6 +1,6 @@
 import { UserRow } from "./UserRow"
 
-export const UsersList = ({ handlerRemoveUser, users = [] }) => {
+export const UsersList = ({ handlerRemoveUser, handlerUserSelectedForm, users = [] }) => {
 
     return (
         <table className="table table-hover table-striped">
@@ -22,6 +22,7 @@ export const UsersList = ({ handlerRemoveUser, users = [] }) => {
                             id={id}
                             username={username}
                             email={email}
+                            handlerUserSelectedForm={handlerUserSelectedForm}
                             handlerRemoveUser={handlerRemoveUser} />
                     ))
                 }
