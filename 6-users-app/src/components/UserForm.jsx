@@ -4,7 +4,7 @@ export const UserForm = ({ handlerAddUser, initialUserForm, userSelected }) => {
 
     const [userForm, setUserForm] = useState(initialUserForm);
 
-    const { username, password, email } = userForm;
+    const { id, username, password, email } = userForm;
 
     useEffect( () => {
         setUserForm({
@@ -55,10 +55,14 @@ export const UserForm = ({ handlerAddUser, initialUserForm, userSelected }) => {
                 name="email"
                 value={email}
                 onChange={onInputChange} />
+            <input
+                type="hidden"
+                name="id"
+                value={id} />
             <button
                 className="btn btn-primary"
                 type="submit">
-                Crear
+                { id > 0? 'Editar' : 'Crear'}
             </button>
         </form>
     )
