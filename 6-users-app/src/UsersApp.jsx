@@ -3,53 +3,7 @@ import { UserForm } from "./components/UserForm";
 import { UsersList } from "./components/UsersList";
 import { usersReducer } from "./reducers/usersReducer";
 
-const initialUsers = [
-    {
-        id: 1,
-        username: 'pepe',
-        password: '12345',
-        email: 'pepe@correo.com'
-    },
-];
-
-const initialUserForm = {
-    id:0,
-    username: '',
-    password: '',
-    email: '',
-}
-
 export const UsersApp = () => {
-
-    const [users, dispatch] = useReducer(usersReducer, initialUsers);
-    const [userSelected, setuserSelected] = useState(initialUserForm)
-
-    const handlerAddUser = (user) => {
-        // console.log(user);
-        let type;
-        if(user.id == 0) {
-            type= 'addUser';
-        } else {
-            type= 'updateUser';
-        }
-        dispatch({
-            type,
-            payload: user,
-        })
-    }
-
-    const handlerRemoveUser = (id) => {
-        // console.log(id);
-        dispatch({
-            type: 'removeUser',
-            payload: id,
-        })
-    }
-
-    const handlerUserSelectedForm = (user) => {
-        //console.log(user);
-        setuserSelected({...user});
-    }
 
     return (
         <div className="container my-4">
