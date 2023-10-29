@@ -1,6 +1,6 @@
 
 export const UserRow = ({handlerUserSelectedForm, handlerRemoveUser, id, username, email}) => {
-
+    
     return (
         <tr>
             <td>{id}</td>
@@ -14,7 +14,7 @@ export const UserRow = ({handlerUserSelectedForm, handlerRemoveUser, id, usernam
                         id,
                         username,
                         email
-                    })}   
+                    })}
                 >
                     update
                 </button>
