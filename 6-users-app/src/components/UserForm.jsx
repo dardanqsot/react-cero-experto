@@ -27,7 +27,7 @@ export const UserForm = ({ userSelected, handlerAddUser, initialUserForm }) => {
         event.preventDefault();
         if (!username || (!password && id === 0) || !email) {
             Swal.fire(
-                'Erro de validacion',
+                'Error de validacion',
                 'Debe completar los campos del formulario!',
                 'error'
             );
@@ -71,6 +71,12 @@ export const UserForm = ({ userSelected, handlerAddUser, initialUserForm }) => {
                 className="btn btn-primary"
                 type="submit">
                 {id > 0 ? 'Editar' : 'Crear'}
+            </button>
+
+            <button
+                className="btn btn-primary mx-2"
+                type="button">
+                Cerrar
             </button>
         </form>
     )
