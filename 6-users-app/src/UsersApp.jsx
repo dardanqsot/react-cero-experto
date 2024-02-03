@@ -6,7 +6,7 @@ import { useReducer } from "react";
 
 export const UsersApp = () => {
 
-    const initialLogin = {
+    const initialLogin = JSON.parse(sessionStorage.getItem('login')) || {
         isAuth: false,
         user: undefined,
     }
@@ -17,7 +17,12 @@ export const UsersApp = () => {
             dispach({
                 type: 'login',
                 payload: user,
-            })
+            });
+            sessionStorage.setItem('login', JSON.stringify({
+                isAuth: true,
+                user,
+            }));
+
         } else {
             Swal.fire('Error Login', 'Username o password invalidos', 'error');
         }
