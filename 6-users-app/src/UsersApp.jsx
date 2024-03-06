@@ -2,8 +2,6 @@ import { useReducer } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuth } from './auth/hooks/useAuth';
 import { LoginPage } from './auth/pages/LoginPage';
-import { Navbar } from './components/layout/Navbar';
-import { UsersPage } from './pages/UsersPage';
 import { UserRoutes } from './routes/UserRoutes';
 
 export const UsersApp = () => {
