@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { Navbar } from "../components/layout/Navbar"
+import { UserProvider } from "../context/UserProvider"
 import { useUsers } from "../hooks/useUsers"
 import { RegisterPage } from "../pages/RegisterPage"
 import { UsersPage } from "../pages/UsersPage"
-import { UserProvider } from "../context/UserProvider"
 
 export const UserRoutes = ({ login, handlerLogout }) => {
 
@@ -12,22 +12,9 @@ export const UserRoutes = ({ login, handlerLogout }) => {
             <UserProvider>
                 <Navbar login={login} handlerLogout={handlerLogout} />
                 <Routes>
-                    <Route path="users" element={<UsersPage
-                        users={users}
-                        userSelected={userSelected}
-                        initialUserForm={initialUserForm}
-                        visibleForm={visibleForm}
-                        handlerAddUser={handlerAddUser}
-                        handlerRemoveUser={handlerRemoveUser}
-                        handlerUserSelectedForm={handlerUserSelectedForm}
-                        handlerOpenForm={handlerOpenForm}
-                        handlerCloseForm={handlerCloseForm}
-                    />} />
-
-                    <Route path="users/register" element={<RegisterPage/>} />
-
-                    <Route path="users/edit/:id" element={<RegisterPage/>} />
-
+                    <Route path="users" element={<UsersPage />} />
+                    <Route path="users/register" element={<RegisterPage />} />
+                    <Route path="users/edit/:id" element={<RegisterPage />} />
                     <Route path="/" element={<Navigate to="/users" />} />
                 </Routes>
             </UserProvider>
