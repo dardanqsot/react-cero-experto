@@ -1,8 +1,8 @@
-package com.dardan.backend.cartapp.backendcartapp.models.entities;
+package com.andres.backend.cartapp.backendcartapp.models.entities;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -51,5 +51,6 @@ public class Product {
     public void setPrice(Long price) {
         this.price = price;
     }
+    
     
 }
